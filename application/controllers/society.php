@@ -9,8 +9,6 @@ class Society extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
     }
-    
-    
 
     public function index() {
         $this->load->view('include/include_header');
@@ -19,15 +17,18 @@ class Society extends CI_Controller {
     }
 
     public function dashboard() {
+        $this->load->model('categories_model');
+        $data['categories'] = $this->categories_model->getDataAll();
         $this->load->view('include/include_header');
-        $this->load->view('content/dashboard');
+        $this->load->view('content/dashboard', $data);
         $this->load->view('include/include_footer');
     }
-    
-    public function cardBig(){
+
+    public function cardBig() {
         $this->load->view('content/card_big');
     }
-    public function cardSmall(){
+
+    public function cardSmall() {
         $this->load->view('content/card_small');
     }
 

@@ -2,7 +2,7 @@ require.config({
     //urlArgs: "bust=" +  (new Date()).getTime(),
     baseUrl: basePath + '/js/',
     paths: {
-        'facebook': '//connect.facebook.net/en_US/sdk',
+        'facebook': 'sdk',//connect.facebook.net/en_US/sdk',
         'jquery': 'jquery.min',
         'semantic': 'semantic.min',
     },

@@ -3,10 +3,9 @@
         <div class="row" style="margin-top: 50px;">
             <div class="column">
                 <div class="ui compact labeled icon menu">
-                    <a href="<?= site_url('society/dashboard') ?>" class="item"> <i class="gamepad icon"></i> Games
-                    </a> <a class="item"> <i class="video camera icon"></i> Channels
-                    </a> <a class="item"> <i class="video play icon"></i> Videos
-                    </a>
+                    <?php foreach ($categories as $index => $value) { ?>
+                        <a class="item"> <i class="<?=$value['cat_icon']?> icon"></i> <?= $value['cat_nameth'] ?></a>
+                    <?php } ?>                    
                 </div>
             </div>
         </div>

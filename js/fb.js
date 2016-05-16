@@ -20,7 +20,7 @@ define(['facebook', 'jquery', 'semantic'], function () {
         if (response.authResponse) {
             $('.item').on('click', function () {
                 FB.api('/216196569814', {
-                    fields: 'posts.limit(10){id,message,picture,object_id,created_time,link,comments,likes,shares},app_links,app_id'
+                    fields: 'posts.limit(20){id,message,picture,object_id,created_time,link,comments,likes,shares,permalink_url},app_links,app_id'
                 }, function (response) {
                     $('.special').empty();
                     console.log(response);
@@ -42,7 +42,7 @@ define(['facebook', 'jquery', 'semantic'], function () {
 
                 });
             })
-
+            $('.item').eq(0).trigger('click');
         } else {
             console.log('Authorization failed.');
         }
@@ -100,6 +100,7 @@ function replaceFBContentInDomCard(domCardSmall, post) {
     $(domCardSmall).find('span.btn-comments').append('<span>' + checkObjectUndefined(post.comments) + '</span>');
     $(domCardSmall).find('span.btn-shares').append('<span>' + checkObjectUndefined(post.shares) + '</span>');
     $(domCardSmall).attr('data-content', post.message);
+    $(domCardSmall).find('a.link-fb').attr('href',post.permalink_url);
     $('.special .image').dimmer({on: 'hover'});
     $('.card').popup({on: 'hover', posistion: 'bottom center'});
     $('.box-loader').removeClass('active');

@@ -3,7 +3,7 @@
         <div class="ui dimmer">
             <div class="content">
                 <div class="center">
-                    <div class="ui inverted button">Add Friend</div>
+                    <a class="ui inverted button orange link-fb" target="_blank">เยี่ยมชม</a>
                 </div>
             </div>
         </div>
