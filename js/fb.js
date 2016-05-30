@@ -19,6 +19,7 @@ define(['facebook', 'jquery', 'semantic'], function () {
     FB.login(function (response) {
         if (response.authResponse) {
             $('.item').on('click', function () {
+                $('.loading').addClass('active');
                 FB.api('/216196569814', {
                     fields: 'posts.limit(20){id,message,picture,object_id,created_time,link,comments,likes,shares,permalink_url},app_links,app_id'
                 }, function (response) {
@@ -39,8 +40,9 @@ define(['facebook', 'jquery', 'semantic'], function () {
 
                         }
                     });
-
+                    $('.loading').removeClass('active');
                 });
+                
             })
             $('.item').eq(0).trigger('click');
         } else {

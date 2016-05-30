@@ -2,9 +2,12 @@ require.config({
     //urlArgs: "bust=" +  (new Date()).getTime(),
     baseUrl: basePath + '/js/',
     paths: {
-        'facebook': 'sdk',//connect.facebook.net/en_US/sdk',
+        'facebook': 'sdk', //connect.facebook.net/en_US/sdk',
         'jquery': 'jquery.min',
         'semantic': 'semantic.min',
+        'elastislide': 'jquery.elastislide',
+        'modernizr': 'modernizr.custom.17475',
+        'jquerypp': 'jquerypp.custom'
     },
     shim: {
         'facebook': {
@@ -14,6 +17,8 @@ require.config({
             exports: 'jquery'
         }, 'semantic': {
             exports: 'semantic'
+        }, 'elastislide' : {
+            exports : 'elastislide',
         }
     },
 })
@@ -21,6 +26,8 @@ require.config({
 
 require(['fb']);
 
-/*define(["moment"], function (moment) {
- console.log(moment().format());
- });*/
+define(["jquery","elastislide","modernizr"], function () {
+    $('#carousel').elastislide({
+        minItems : 2
+    });
+});
