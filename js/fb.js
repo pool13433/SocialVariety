@@ -18,7 +18,8 @@ define(['facebook', 'jquery', 'semantic'], function () {
      */
     FB.login(function (response) {
         if (response.authResponse) {
-            $('.item').on('click', function () {
+            $('.item-cetegory').on('click', function () {                
+                $('.attached.header').html($(this).html());
                 $('.loading').addClass('active');
                 FB.api('/216196569814', {
                     fields: 'posts.limit(20){id,message,picture,object_id,created_time,link,comments,likes,shares,permalink_url},app_links,app_id'
@@ -42,15 +43,17 @@ define(['facebook', 'jquery', 'semantic'], function () {
                     });
                     $('.loading').removeClass('active');
                 });
-                
+
             })
-            $('.item').eq(0).trigger('click');
+            $('.item-cetegory').eq(0).trigger('click');
         } else {
             console.log('Authorization failed.');
         }
     }, {
         scope: 'publish_actions,user_posts,user_likes,user_photos'
     });
+
+    $('.ui.sidebar').sidebar({dimPage: false}).sidebar('attach events', '.launch.button', 'slide out');
 });
 
 function renderCard(urlCard, parentCards, post) {
@@ -102,7 +105,7 @@ function replaceFBContentInDomCard(domCardSmall, post) {
     $(domCardSmall).find('span.btn-comments').append('<span>' + checkObjectUndefined(post.comments) + '</span>');
     $(domCardSmall).find('span.btn-shares').append('<span>' + checkObjectUndefined(post.shares) + '</span>');
     $(domCardSmall).attr('data-content', post.message);
-    $(domCardSmall).find('a.link-fb').attr('href',post.permalink_url);
+    $(domCardSmall).find('a.link-fb').attr('href', post.permalink_url);
     $('.special .image').dimmer({on: 'hover'});
     $('.card').popup({on: 'hover', posistion: 'bottom center'});
     $('.box-loader').removeClass('active');

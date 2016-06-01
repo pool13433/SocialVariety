@@ -32,4 +32,27 @@ class Society extends CI_Controller {
         $this->load->view('content/card_small');
     }
 
+    public function saveFanpage() {
+        $exec = false;
+        if (!empty($_POST)) {
+            $this->load->model('fanpage_model');
+            $this->fanpage_model->setData($_POST);
+            if (empty($_POST['fan_id'])) {
+                $exec = $this->fanpage_model->insert($_POST);
+            } else {
+                $exec = $this->fanpage_model->updateData($_POST);
+            }
+            echo json_encode(array(
+                'status' => $exec,
+                'title' => 'Save Status',
+                'message' => 'Save Fanpage Success',
+                'url' => ''
+            ));
+        }
+    }
+
+    public function deleteFanpage() {
+        
+    }
+
 }
